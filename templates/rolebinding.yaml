@@ -1,3 +1,4 @@
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -6,7 +7,25 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: server
   name: fake-role
-  namespace: "ar\gocd"
+  namespace: "argocd"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: argocd-server
+subjects:
+- kind: ServiceAccount
+  name: argocd-server
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: server
+  name: fake-role2
+  namespace: "argocd"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
