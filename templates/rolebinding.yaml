@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/component: server
   name: fake-role
-  namespace: " argocd"
+  namespace: "\\x61rgocd"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
